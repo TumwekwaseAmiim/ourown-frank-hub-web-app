@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>Post | OurOwn Hub</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css?v=community3">
+</head>
+
+<body>
+
+
+<!-- ======================================
+     HEADER
+====================================== -->
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <img
+        src="assets/icons/icon-192.png"
+        class="brand-icon"
+        alt="OurOwn Hub"
+      >
+
+      <div>
+        <h1>OurOwn Hub</h1>
+        <p>Music • Memories • Moments</p>
+      </div>
+
+    </div>
+
+
+    <!-- NRM LOGO -->
+
+    <div class="logo-slot">
+
+      <img
+        src="assets/images/nrm-logo.png"
+        class="header-logo"
+        alt="NRM Logo"
+      >
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ======================================
+     NAVIGATION
+====================================== -->
+
+<nav class="nav">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="songs.html">
+    Songs
+  </a>
+
+  <a href="audios.html">
+    Audios
+  </a>
+
+  <a href="photos.html">
+    Photos
+  </a>
+
+  <a
+    class="active"
+    href="community.html"
+  >
+    Post
+  </a>
+
+  <a href="chat.html">
+    Chat
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="admin/login.html">
+    Admin
+  </a>
+
+</nav>
+
+
+<!-- ======================================
+     MAIN
+====================================== -->
+
+<main class="container">
+
+
+  <!-- ====================================
+       CREATE POST
+  ===================================== -->
+
+  <section class="card community-compose">
+
+    <div class="community-compose-head">
+
+      <div class="community-compose-icon">
+        +
+      </div>
+
+      <div>
+
+        <h2>
+          Share Something
+        </h2>
+
+        <p>
+          Share a message, memory,
+          photo or audio with the community.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <form
+      id="communityForm"
+      class="community-form"
+    >
+
+
+      <!-- NAME -->
+
+      <div class="community-field">
+
+        <label for="posterName">
+
+          Your name
+
+          <span class="optional">
+            optional
+          </span>
+
+        </label>
+
+        <input
+          id="posterName"
+          type="text"
+          maxlength="80"
+          placeholder="Your name"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <!-- CAPTION -->
+
+      <div class="community-field">
+
+        <label for="postCaption">
+          What's on your mind?
+        </label>
+
+        <textarea
+          id="postCaption"
+          rows="4"
+          maxlength="1000"
+          placeholder="Write something..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- MEDIA -->
+
+      <div class="community-field">
+
+        <label for="postMedia">
+
+          Photo or audio
+
+          <span class="optional">
+            optional
+          </span>
+
+        </label>
+
+        <input
+          id="postMedia"
+          type="file"
+          accept="image/*,audio/*"
+        >
+
+        <small class="muted">
+          You can attach one photo or audio recording to your post.
+        </small>
+
+      </div>
+
+
+      <!-- POST BUTTON -->
+
+      <div class="community-submit-row">
+
+        <button
+          id="communityPostButton"
+          class="btn"
+          type="submit"
+        >
+          Post Now
+        </button>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div
+        id="postStatus"
+        class="community-status"
+      ></div>
+
+    </form>
+
+  </section>
+
+
+  <!-- ====================================
+       COMMUNITY FEED
+  ===================================== -->
+
+  <div class="section-title community-feed-title">
+
+    <div>
+
+      <h2>
+        Community Feed
+      </h2>
+
+      <p class="muted">
+        Recent posts from the community.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="communityFeed"
+    class="media-list"
+  ></div>
+
+
+</main>
+
+
+<!-- ======================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
+  OurOwn Hub — Music • Memories • Moments
+</footer>
+
+
+<!-- ======================================
+     JAVASCRIPT
+====================================== -->
+
+<script
+  type="module"
+  src="js/community.js?v=community3"
+></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>Settings | OurOwn Hub Admin</title>
+
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../css/style.css?v=adminsettings2">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <div>
+        <h1>OurOwn Hub Admin</h1>
+        <p>System Management</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<nav class="nav">
+
+  <a href="../index.html">
+    ← Back to App
+  </a>
+
+  <a href="dashboard.html">
+    Dashboard
+  </a>
+
+  <a href="upload.html">
+    Upload Media
+  </a>
+
+  <a href="community.html">
+    Community
+  </a>
+
+  <a href="chat.html">
+    Chat
+  </a>
+
+  <a
+    class="active"
+    href="settings.html"
+  >
+    Settings
+  </a>
+
+</nav>
+
+
+<main class="container">
+
+  <section class="reset-box">
+
+    <h3>
+      System Reset
+    </h3>
+
+    <p class="small">
+      These actions permanently delete selected Firestore data.
+      Use them carefully.
+    </p>
+
+
+    <label>
+
+      Reset option
+
+      <select id="resetType">
+
+        <option value="community">
+          Community Posts
+        </option>
+
+        <option value="chatMessages">
+          Chat Messages
+        </option>
+
+        <option value="statistics">
+          Media Statistics
+        </option>
+
+        <option value="media">
+          Media Records
+        </option>
+
+        <option value="full">
+          Full System Data
+        </option>
+
+      </select>
+
+    </label>
+
+
+    <label>
+
+      Admin password
+
+      <input
+        id="resetPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter your admin password"
+      >
+
+    </label>
+
+
+    <label>
+
+      Type
+      <strong>
+        RESET OUR OWN HUB
+      </strong>
+
+      <input
+        id="resetPhrase"
+        type="text"
+        autocomplete="off"
+        placeholder="RESET OUR OWN HUB"
+      >
+
+    </label>
+
+
+    <button
+      id="resetBtn"
+      class="btn danger"
+      type="button"
+    >
+      Reset Selected Data
+    </button>
+
+
+    <div
+      id="resetStatus"
+      class="community-status"
+      style="margin-top:12px"
+    ></div>
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  OurOwn Hub Admin
+</footer>
+
+
+<script
+  type="module"
+  src="../js/admin.js?v=cloudinary5"
+></script>
+
+</body>
+
+</html>

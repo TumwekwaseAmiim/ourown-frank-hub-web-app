@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>Upload Media | OurOwn Hub Admin</title>
+
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../css/style.css?v=adminupload4">
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     HEADER
+====================================== -->
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <div>
+        <h1>OurOwn Hub Admin</h1>
+        <p>System Management</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ======================================
+     ADMIN NAVIGATION
+====================================== -->
+
+<nav class="nav">
+
+  <a href="../index.html">
+    ← Back to App
+  </a>
+
+  <a href="dashboard.html">
+    Dashboard
+  </a>
+
+  <a
+    class="active"
+    href="upload.html"
+  >
+    Upload Media
+  </a>
+
+  <a href="community.html">
+    Community
+  </a>
+
+  <a href="chat.html">
+    Chat
+  </a>
+
+  <a href="settings.html">
+    Settings
+  </a>
+
+</nav>
+
+
+<!-- ======================================
+     MAIN
+====================================== -->
+
+<main class="container">
+
+  <section class="card admin-upload-card">
+
+    <div class="admin-upload-heading">
+
+      <div class="community-compose-icon">
+        +
+      </div>
+
+      <div>
+
+        <h2>
+          Upload Media
+        </h2>
+
+        <p class="muted">
+          Add songs, audios or photos to OurOwn Hub.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <form
+      id="adminUploadForm"
+      class="community-form"
+    >
+
+
+      <!-- ==================================
+           MEDIA TYPE
+      =================================== -->
+
+      <div class="community-field">
+
+        <label for="mediaType">
+          Media Type
+        </label>
+
+        <select
+          id="mediaType"
+          required
+        >
+
+          <option value="song">
+            Song
+          </option>
+
+          <option value="audio">
+            Audio
+          </option>
+
+          <option value="photo">
+            Photo
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ==================================
+           TITLE
+      =================================== -->
+
+      <div class="community-field">
+
+        <label for="mediaTitle">
+          Title
+        </label>
+
+        <input
+          id="mediaTitle"
+          type="text"
+          maxlength="150"
+          placeholder="Enter media title"
+          required
+        >
+
+      </div>
+
+
+      <!-- ==================================
+           DESCRIPTION
+      =================================== -->
+
+      <div class="community-field">
+
+        <label for="mediaDescription">
+
+          Description
+
+          <span class="optional">
+            optional
+          </span>
+
+        </label>
+
+        <textarea
+          id="mediaDescription"
+          rows="3"
+          maxlength="1000"
+          placeholder="Add a short description..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- ==================================
+           MAIN FILE
+      =================================== -->
+
+      <div class="community-field">
+
+        <label
+          id="mediaFileLabel"
+          for="mediaFile"
+        >
+          Song File
+        </label>
+
+        <input
+          id="mediaFile"
+          type="file"
+          accept="audio/*"
+          required
+        >
+
+        <small
+          id="mediaFileHelp"
+          class="muted"
+        >
+          Choose the song file to upload.
+        </small>
+
+      </div>
+
+
+      <!-- ==================================
+           OPTIONAL COVER
+      =================================== -->
+
+      <div
+        id="coverField"
+        class="community-field"
+      >
+
+        <label
+          id="mediaCoverLabel"
+          for="mediaCover"
+        >
+
+          Cover Image
+
+          <span class="optional">
+            optional
+          </span>
+
+        </label>
+
+        <input
+          id="mediaCover"
+          type="file"
+          accept="image/*"
+        >
+
+        <small
+          id="mediaCoverHelp"
+          class="muted"
+        >
+          Add artwork or a cover image for this song.
+        </small>
+
+      </div>
+
+
+      <!-- ==================================
+           PHOTO INFORMATION
+      =================================== -->
+
+      <div
+        id="photoInfo"
+        class="notice"
+        style="display:none"
+      >
+
+        <strong>
+          Photo upload
+        </strong>
+
+        <br><br>
+
+        The photo will be visible publicly
+        on the Photos page.
+
+        <br>
+
+        Visitors will be able to
+        <strong>view, download and share</strong>
+        the photo.
+
+      </div>
+
+
+      <!-- ==================================
+           PUBLISH
+      =================================== -->
+
+      <label class="inline">
+
+        <input
+          id="mediaPublished"
+          type="checkbox"
+          checked
+        >
+
+        Publish immediately
+
+      </label>
+
+
+      <!-- ==================================
+           BUTTON
+      =================================== -->
+
+      <div class="community-submit-row">
+
+        <button
+          id="adminUploadButton"
+          class="btn"
+          type="submit"
+        >
+          Upload Media
+        </button>
+
+      </div>
+
+
+      <!-- ==================================
+           STATUS
+      =================================== -->
+
+      <div
+        id="uploadStatus"
+        class="community-status"
+      ></div>
+
+    </form>
+
+  </section>
+
+</main>
+
+
+<!-- ======================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
+  OurOwn Hub Admin
+</footer>
+
+
+<!-- ======================================
+     FORM MODE
+====================================== -->
+
+<script>
+
+const mediaType =
+  document.getElementById(
+    "mediaType"
+  );
+
+
+const mediaFile =
+  document.getElementById(
+    "mediaFile"
+  );
+
+
+const mediaFileLabel =
+  document.getElementById(
+    "mediaFileLabel"
+  );
+
+
+const mediaFileHelp =
+  document.getElementById(
+    "mediaFileHelp"
+  );
+
+
+const mediaCover =
+  document.getElementById(
+    "mediaCover"
+  );
+
+
+const mediaCoverLabel =
+  document.getElementById(
+    "mediaCoverLabel"
+  );
+
+
+const mediaCoverHelp =
+  document.getElementById(
+    "mediaCoverHelp"
+  );
+
+
+const coverField =
+  document.getElementById(
+    "coverField"
+  );
+
+
+const photoInfo =
+  document.getElementById(
+    "photoInfo"
+  );
+
+
+// ======================================
+// UPDATE FORM BY MEDIA TYPE
+// ======================================
+
+function updateUploadForm() {
+
+  const type =
+    mediaType.value;
+
+
+  // ====================================
+  // SONG
+  // ====================================
+
+  if (type === "song") {
+
+    mediaFile.accept =
+      "audio/*";
+
+
+    mediaFileLabel.textContent =
+      "Song File";
+
+
+    mediaFileHelp.textContent =
+      "Choose the song file to upload.";
+
+
+    coverField.style.display =
+      "grid";
+
+
+    mediaCoverLabel.innerHTML =
+      `Cover Image
+       <span class="optional">
+         optional
+       </span>`;
+
+
+    mediaCoverHelp.textContent =
+      "Add artwork or a cover image for the song.";
+
+
+    photoInfo.style.display =
+      "none";
+
+  }
+
+
+  // ====================================
+  // AUDIO
+  // ====================================
+
+  else if (type === "audio") {
+
+    mediaFile.accept =
+      "audio/*";
+
+
+    mediaFileLabel.textContent =
+      "Audio File";
+
+
+    mediaFileHelp.textContent =
+      "Choose the audio recording to upload.";
+
+
+    coverField.style.display =
+      "grid";
+
+
+    mediaCoverLabel.innerHTML =
+      `Cover Image
+       <span class="optional">
+         optional
+       </span>`;
+
+
+    mediaCoverHelp.textContent =
+      "Add an optional image for this audio.";
+
+
+    photoInfo.style.display =
+      "none";
+
+  }
+
+
+  // ====================================
+  // PHOTO
+  // ====================================
+
+  else if (type === "photo") {
+
+    mediaFile.accept =
+      "image/*";
+
+
+    mediaFileLabel.textContent =
+      "Photo File";
+
+
+    mediaFileHelp.textContent =
+      "Choose the photo to upload.";
+
+
+    /*
+     * A separate cover is not needed
+     * for photos.
+     */
+
+    coverField.style.display =
+      "none";
+
+
+    mediaCover.value =
+      "";
+
+
+    photoInfo.style.display =
+      "block";
+
+  }
+
+}
+
+
+// ======================================
+// MEDIA TYPE CHANGE
+// ======================================
+
+mediaType.addEventListener(
+  "change",
+  () => {
+
+    mediaFile.value =
+      "";
+
+    mediaCover.value =
+      "";
+
+
+    updateUploadForm();
+
+  }
+);
+
+
+// Initial setup
+updateUploadForm();
+
+</script>
+
+
+<!-- ======================================
+     ADMIN JAVASCRIPT
+====================================== -->
+
+<script
+  type="module"
+  src="../js/admin.js?v=cloudinary4"
+></script>
+
+
+</body>
+
+</html>

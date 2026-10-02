@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>OurOwn Hub 🎵📸🎙️</title>
+
+<meta
+  name="description"
+  content="🎵 Music • 📸 Memories • 🎙️ Audios • 🤝 Community — all in one place."
+>
+
+<meta property="og:title" content="OurOwn Hub 🎵📸🎙️">
+
+<meta
+  property="og:description"
+  content="🎵 Music • 📸 Memories • 🎙️ Audios • 🤝 Community — all in one place."
+>
+
+<meta
+  property="og:image"
+  content="assets/icons/icon-512.png"
+>
+
+<meta property="og:type" content="website">
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css?v=home3">
+</head>
+
+<body>
+
+
+<!-- ======================================
+     HEADER
+====================================== -->
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <img
+        src="assets/icons/icon-192.png"
+        class="brand-icon"
+        alt="OurOwn Hub"
+      >
+
+      <div>
+
+        <h1>
+          OurOwn Hub
+        </h1>
+
+        <p>
+          Music • Memories • Moments
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- NRM LOGO -->
+
+    <div class="logo-slot">
+
+      <img
+        src="assets/images/nrm-logo.png"
+        class="header-logo"
+        alt="NRM Logo"
+      >
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ======================================
+     NAVIGATION
+====================================== -->
+
+<nav class="nav">
+
+  <a
+    class="active"
+    href="index.html"
+  >
+    Home
+  </a>
+
+  <a href="songs.html">
+    Songs
+  </a>
+
+  <a href="audios.html">
+    Audios
+  </a>
+
+  <a href="photos.html">
+    Photos
+  </a>
+
+  <a href="community.html">
+    Post
+  </a>
+
+  <a href="chat.html">
+    Chat
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="admin/login.html">
+    Admin
+  </a>
+
+</nav>
+
+
+<!-- ======================================
+     MAIN
+====================================== -->
+
+<main class="container">
+
+
+  <!-- ====================================
+       SONG HERO
+  ===================================== -->
+
+  <section class="hero">
+
+    <h2>
+      Songs
+    </h2>
+
+    <p>
+      Find a song, play it,
+      download it or share it.
+    </p>
+
+    <button
+      id="installBtn"
+      class="btn black"
+      hidden
+    >
+      Install App
+    </button>
+
+  </section>
+
+
+  <!-- ====================================
+       SONG LIST
+  ===================================== -->
+
+  <div class="section-title">
+
+    <div>
+
+      <h2>
+        All Songs
+      </h2>
+
+      <p class="small">
+        Browse the available songs.
+      </p>
+
+    </div>
+
+
+    <input
+      id="homeSongSearch"
+      type="search"
+      placeholder="Search songs"
+    >
+
+  </div>
+
+
+  <div
+    id="homeSongsList"
+    class="media-list"
+  ></div>
+
+
+  <!-- ====================================
+       MORE SECTIONS
+  ===================================== -->
+
+  <section style="margin-top:26px">
+
+    <h2>
+      More
+    </h2>
+
+
+    <div class="grid">
+
+
+      <!-- AUDIOS -->
+
+      <a
+        class="card"
+        href="audios.html"
+      >
+
+        <h3>
+          Audios
+        </h3>
+
+        <p>
+          Play, download and share
+          memorable recordings.
+        </p>
+
+      </a>
+
+
+      <!-- PHOTOS -->
+
+      <a
+        class="card"
+        href="photos.html"
+      >
+
+        <h3>
+          Photos
+        </h3>
+
+        <p>
+          View, download and share
+          photos.
+        </p>
+
+      </a>
+
+
+      <!-- COMMUNITY -->
+
+      <a
+        class="card"
+        href="community.html"
+      >
+
+        <h3>
+          Post
+        </h3>
+
+        <p>
+          Post a photo, audio
+          or message.
+        </p>
+
+      </a>
+
+
+      <!-- CHAT -->
+
+      <a
+        class="card"
+        href="chat.html"
+      >
+
+        <h3>
+          Chat
+        </h3>
+
+        <p>
+          Sign in to join the
+          public group chat.
+        </p>
+
+      </a>
+
+
+      <!-- ADMIN -->
+
+      <a
+        class="card"
+        href="admin/login.html"
+      >
+
+        <h3>
+          Admin
+        </h3>
+
+        <p>
+          Manage media, posts,
+          users and the system.
+        </p>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- ======================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
+
+  OurOwn Hub —
+  Music • Memories • Moments
+
+</footer>
+
+
+<!-- ======================================
+     SCRIPTS
+====================================== -->
+
+<script
+  type="module"
+  src="js/media.js?v=firebase2"
+></script>
+
+<script
+  src="js/pwa.js?v=firebase1"
+></script>
+
+
+</body>
+
+</html>

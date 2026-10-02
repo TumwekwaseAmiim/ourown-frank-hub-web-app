@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>Chat | OurOwn Hub</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css?v=publicchat2">
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     HEADER
+====================================== -->
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <img
+        src="assets/icons/icon-192.png"
+        class="brand-icon"
+        alt="OurOwn Hub"
+      >
+
+      <div>
+        <h1>OurOwn Hub</h1>
+        <p>Music • Memories • Moments</p>
+      </div>
+
+    </div>
+
+
+    <div class="logo-slot">
+
+      <img
+        src="assets/images/nrm-logo.png"
+        class="header-logo"
+        alt="NRM Logo"
+      >
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ======================================
+     NAVIGATION
+====================================== -->
+
+<nav class="nav">
+
+  <a href="index.html">
+    Home
+  </a>
+
+  <a href="songs.html">
+    Songs
+  </a>
+
+  <a href="audios.html">
+    Audios
+  </a>
+
+  <a href="photos.html">
+    Photos
+  </a>
+
+  <a href="community.html">
+    Post
+  </a>
+
+  <a
+    class="active"
+    href="chat.html"
+  >
+    Chat
+  </a>
+
+  <a href="about.html">
+    About
+  </a>
+
+  <a href="admin/login.html">
+    Admin
+  </a>
+
+</nav>
+
+
+<!-- ======================================
+     MAIN
+====================================== -->
+
+<main class="container">
+
+
+  <!-- ====================================
+       USER NOT LOGGED IN
+  ===================================== -->
+
+  <div
+    id="chatGate"
+    class="card"
+  >
+
+    <h2>
+      OurOwn Hub Chat
+    </h2>
+
+    <p>
+      Chat is available to registered members.
+      Sign in or create an account to join the public conversation.
+    </p>
+
+
+    <div class="media-actions">
+
+      <a
+        class="btn"
+        href="login.html"
+      >
+        Sign In
+      </a>
+
+
+      <a
+        class="btn black"
+        href="register.html"
+      >
+        Create Account
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================
+       LOGGED IN CHAT
+  ===================================== -->
+
+  <div
+    id="chatArea"
+    class="hidden"
+  >
+
+
+    <div class="chat-app">
+
+
+      <!-- =================================
+           LEFT SIDE
+           REGISTERED PEOPLE
+      ================================== -->
+
+      <aside class="chat-sidebar">
+
+
+        <!-- CURRENT USER -->
+
+        <div class="chat-current-user">
+
+
+          <div
+            id="myAvatar"
+            class="chat-avatar"
+          >
+          </div>
+
+
+          <div class="chat-current-user-info">
+
+            <strong id="myName">
+              User
+            </strong>
+
+            <small>
+              Signed in
+            </small>
+
+          </div>
+
+
+          <button
+            id="chatLogout"
+            class="btn grey chat-logout"
+            type="button"
+          >
+            Logout
+          </button>
+
+        </div>
+
+
+        <!-- REGISTERED PEOPLE TITLE -->
+
+        <div class="chat-people-header">
+
+          <h3>
+            Registered People
+          </h3>
+
+
+          <input
+            id="peopleSearch"
+            type="search"
+            placeholder="Search people..."
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <!-- USERS LIST -->
+
+        <div
+          id="chatUsers"
+          class="chat-users"
+        >
+
+          <p>
+            Loading registered people...
+          </p>
+
+        </div>
+
+
+      </aside>
+
+
+      <!-- =================================
+           RIGHT SIDE
+           PUBLIC CHAT
+      ================================== -->
+
+      <section class="chat-conversation">
+
+
+        <!-- CHAT HEADER -->
+
+        <div class="conversation-header">
+
+
+          <div class="chat-avatar">
+            <span>OH</span>
+          </div>
+
+
+          <div>
+
+            <strong>
+              OurOwn Hub Public Chat
+            </strong>
+
+            <small>
+              Everyone in this chat can see messages
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- CHAT MESSAGES -->
+
+        <div
+          id="chatMessages"
+          class="private-chat-box"
+        >
+
+          <div class="conversation-start">
+
+            <p>
+              Loading public conversation...
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- MESSAGE FORM -->
+
+        <form
+          id="chatForm"
+          class="chat-send"
+        >
+
+
+          <input
+            id="chatInput"
+            type="text"
+            maxlength="500"
+            placeholder="Write a public message..."
+            autocomplete="off"
+            required
+          >
+
+
+          <button
+            class="btn"
+            type="submit"
+          >
+            Send
+          </button>
+
+
+        </form>
+
+
+      </section>
+
+
+    </div>
+
+
+  </div>
+
+
+</main>
+
+
+<!-- ======================================
+     FOOTER
+====================================== -->
+
+<footer class="footer">
+
+  OurOwn Hub —
+  Music • Memories • Moments
+
+</footer>
+
+
+<!-- ======================================
+     SCRIPT
+====================================== -->
+
+<script
+  type="module"
+  src="js/chat.js?v=publicchat2"
+></script>
+
+
+</body>
+
+</html>

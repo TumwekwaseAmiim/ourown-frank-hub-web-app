@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
+<rect width="100%" height="100%" fill="#ffd400"/>
+<rect x="25" y="25" width="850" height="550" rx="25" fill="#fff" stroke="#111" stroke-width="8"/>
+<text x="50%" y="46%" dominant-baseline="middle" text-anchor="middle" fill="#d10b2f" font-family="Arial" font-size="58" font-weight="700">OurOwn Hub</text>
+<text x="50%" y="57%" dominant-baseline="middle" text-anchor="middle" fill="#111" font-family="Arial" font-size="28">Music • Memories • Moments</text>
+</svg>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+<title>Create Account | OurOwn Hub</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css?v=firebase1">
+</head>
+<body>
+<main class="auth-card">
+<h1>Create Chat Account</h1>
+<form id="registerForm">
+<label>Display name<input id="regName" required></label>
+<label>Email<input id="regEmail" type="email" required></label>
+<label>Password<input id="regPassword" type="password" minlength="6" required></label>
+<label>Profile picture<input id="regPhoto" type="file" accept="image/*"></label>
+<button class="btn" type="submit">Create Account</button>
+</form>
+<p id="registerStatus"></p>
+<p><a href="login.html">Already have an account?</a></p>
+</main>
+<script type="module" src="js/auth.js?v=firebase1"></script>
+</body></html>

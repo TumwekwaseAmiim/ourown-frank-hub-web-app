@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d10b2f">
+
+<title>Admin Dashboard | OurOwn Hub</title>
+
+<link rel="manifest" href="../manifest.json">
+<link rel="stylesheet" href="../css/style.css?v=admindashboard2">
+</head>
+
+<body>
+
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <div>
+        <h1>OurOwn Hub Admin</h1>
+        <p>System Management</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<nav class="nav">
+
+  <a href="../index.html">
+    ← Back to App
+  </a>
+
+  <a
+    class="active"
+    href="dashboard.html"
+  >
+    Dashboard
+  </a>
+
+  <a href="upload.html">
+    Upload Media
+  </a>
+
+  <a href="community.html">
+    Community
+  </a>
+
+  <a href="chat.html">
+    Chat
+  </a>
+
+  <a href="settings.html">
+    Settings
+  </a>
+
+</nav>
+
+
+<main class="container">
+
+
+  <div class="admin-actions">
+
+    <a
+      class="btn"
+      href="upload.html"
+    >
+      Upload Media
+    </a>
+
+
+    <a
+      class="btn yellow"
+      href="community.html"
+    >
+      Community
+    </a>
+
+
+    <a
+      class="btn black"
+      href="chat.html"
+    >
+      Chat
+    </a>
+
+
+    <a
+      class="btn danger"
+      href="settings.html"
+    >
+      Settings / Reset
+    </a>
+
+
+    <a
+      class="btn black"
+      href="../index.html"
+    >
+      Back to App
+    </a>
+
+
+    <button
+      id="adminLogout"
+      class="btn grey"
+      type="button"
+    >
+      Logout
+    </button>
+
+  </div>
+
+
+  <div class="grid stats-grid">
+
+
+    <div class="card">
+
+      <h3>
+        Songs
+      </h3>
+
+      <strong id="statSongs">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Audios
+      </h3>
+
+      <strong id="statAudios">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Photos
+      </h3>
+
+      <strong id="statPhotos">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Community Posts
+      </h3>
+
+      <strong id="statPosts">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Chat Users
+      </h3>
+
+      <strong id="statUsers">
+        0
+      </strong>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer class="footer">
+  OurOwn Hub Admin
+</footer>
+
+
+<script
+  type="module"
+  src="../js/admin.js?v=cloudinary5"
+></script>
+
+</body>
+
+</html>
