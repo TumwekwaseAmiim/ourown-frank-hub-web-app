@@ -17,6 +17,15 @@ const PLACEHOLDER =
 
 
 // ======================================
+// CURRENT PLAYER STATE
+// ======================================
+
+let currentAudio = null;
+let currentButton = null;
+let currentPlayerBox = null;
+
+
+// ======================================
 // HELPERS
 // ======================================
 
@@ -33,6 +42,47 @@ function esc(value) {
         "'": "&#39;"
       }[char])
     );
+
+}
+
+
+// ======================================
+// STOP OTHER SONG
+// ======================================
+
+function stopCurrentAudio(exceptAudio = null) {
+
+  if (
+    currentAudio &&
+    currentAudio !== exceptAudio
+  ) {
+
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+
+
+    if (currentButton) {
+
+      currentButton.innerHTML =
+        "▶ Play";
+
+    }
+
+
+    if (currentPlayerBox) {
+
+      currentPlayerBox.classList.remove(
+        "open"
+      );
+
+    }
+
+
+    currentAudio = null;
+    currentButton = null;
+    currentPlayerBox = null;
+
+  }
 
 }
 
@@ -89,7 +139,7 @@ function row(item) {
               ? `
                 <audio
                   controls
-                  preload="none"
+                  preload="metadata"
                   src="${esc(item.fileUrl)}"
                 ></audio>
               `
@@ -147,52 +197,321 @@ function row(item) {
 
 function wireActions() {
 
-  // PLAY
+  // ====================================
+  // PLAY / PAUSE
+  // ====================================
+
   document
     .querySelectorAll(
       "[data-play]"
     )
     .forEach(button => {
 
-      button.onclick = () => {
+      button.onclick =
+        async () => {
 
-        const target =
-          document.getElementById(
-            button.dataset.play
-          );
+          const target =
+            document.getElementById(
+              button.dataset.play
+            );
 
 
-        document
-          .querySelectorAll(
-            ".player-box.open"
-          )
-          .forEach(box => {
+          if (!target) {
+            return;
+          }
 
-            if (box !== target) {
 
-              box.classList.remove(
-                "open"
+          const audio =
+            target.querySelector(
+              "audio"
+            );
+
+
+          if (!audio) {
+
+            alert(
+              "Media file is not available."
+            );
+
+            return;
+
+          }
+
+
+          // =================================
+          // SAME SONG IS PLAYING
+          // PAUSE IT
+          // =================================
+
+          if (
+            currentAudio === audio &&
+            !audio.paused
+          ) {
+
+            audio.pause();
+
+            button.innerHTML =
+              "▶ Play";
+
+            return;
+
+          }
+
+
+          // =================================
+          // SAME SONG IS PAUSED
+          // CONTINUE FROM SAME POSITION
+          // =================================
+
+          if (
+            currentAudio === audio &&
+            audio.paused
+          ) {
+
+            target.classList.add(
+              "open"
+            );
+
+
+            try {
+
+              await audio.play();
+
+              button.innerHTML =
+                "⏸ Pause";
+
+
+            } catch (error) {
+
+              console.error(
+                "Playback error:",
+                error
               );
-
-              box
-                .querySelector("audio")
-                ?.pause();
 
             }
 
-          });
+            return;
+
+          }
 
 
-        target?.classList.toggle(
-          "open"
-        );
+          // =================================
+          // STOP ANOTHER SONG FIRST
+          // =================================
 
-      };
+          stopCurrentAudio(audio);
+
+
+          // =================================
+          // OPEN PLAYER
+          // =================================
+
+          target.classList.add(
+            "open"
+          );
+
+
+          // =================================
+          // SET CURRENT PLAYER
+          // =================================
+
+          currentAudio =
+            audio;
+
+          currentButton =
+            button;
+
+          currentPlayerBox =
+            target;
+
+
+          // =================================
+          // START PLAYING IMMEDIATELY
+          // =================================
+
+          try {
+
+            await audio.play();
+
+            button.innerHTML =
+              "⏸ Pause";
+
+
+          } catch (error) {
+
+            console.error(
+              "Playback failed:",
+              error
+            );
+
+
+            button.innerHTML =
+              "▶ Play";
+
+          }
+
+
+          // =================================
+          // WHEN SONG FINISHES
+          // =================================
+
+          audio.onended =
+            () => {
+
+              button.innerHTML =
+                "▶ Play";
+
+
+              audio.currentTime =
+                0;
+
+
+              if (
+                currentAudio === audio
+              ) {
+
+                currentAudio =
+                  null;
+
+                currentButton =
+                  null;
+
+                currentPlayerBox =
+                  null;
+
+              }
+
+            };
+
+
+          // =================================
+          // IF USER PAUSES INSIDE
+          // NATIVE AUDIO CONTROLS
+          // =================================
+
+          audio.onpause =
+            () => {
+
+              if (
+                currentAudio === audio &&
+                !audio.ended
+              ) {
+
+                button.innerHTML =
+                  "▶ Play";
+
+              }
+
+            };
+
+
+          // =================================
+          // IF USER PLAYS INSIDE
+          // NATIVE AUDIO CONTROLS
+          // =================================
+
+          audio.onplay =
+            () => {
+
+              // Stop all other audios
+
+              document
+                .querySelectorAll(
+                  "audio"
+                )
+                .forEach(
+                  otherAudio => {
+
+                    if (
+                      otherAudio !== audio &&
+                      !otherAudio.paused
+                    ) {
+
+                      otherAudio.pause();
+
+                      otherAudio.currentTime =
+                        0;
+
+                    }
+
+                  }
+                );
+
+
+              // Reset other buttons
+
+              document
+                .querySelectorAll(
+                  "[data-play]"
+                )
+                .forEach(
+                  otherButton => {
+
+                    if (
+                      otherButton !== button
+                    ) {
+
+                      otherButton.innerHTML =
+                        "▶ Play";
+
+                    }
+
+                  }
+                );
+
+
+              // Close other player boxes
+
+              document
+                .querySelectorAll(
+                  ".player-box.open"
+                )
+                .forEach(
+                  box => {
+
+                    if (
+                      box !== target
+                    ) {
+
+                      box.classList.remove(
+                        "open"
+                      );
+
+                    }
+
+                  }
+                );
+
+
+              target.classList.add(
+                "open"
+              );
+
+
+              button.innerHTML =
+                "⏸ Pause";
+
+
+              currentAudio =
+                audio;
+
+              currentButton =
+                button;
+
+              currentPlayerBox =
+                target;
+
+            };
+
+        };
 
     });
 
 
+  // ====================================
   // DOWNLOAD
+  // ====================================
+
   document
     .querySelectorAll(
       "[data-download]"
@@ -213,12 +532,9 @@ function wireActions() {
             );
 
             return;
+
           }
 
-
-          /*
-           * Open/download Cloudinary file.
-           */
 
           const link =
             document.createElement(
@@ -254,7 +570,10 @@ function wireActions() {
     });
 
 
+  // ====================================
   // SHARE
+  // ====================================
+
   document
     .querySelectorAll(
       "[data-share]"
@@ -301,6 +620,7 @@ function wireActions() {
 
               });
 
+
             } catch (error) {
 
               console.log(
@@ -310,13 +630,16 @@ function wireActions() {
 
             }
 
+
           } else {
 
             try {
 
               await navigator
                 .clipboard
-                .writeText(url);
+                .writeText(
+                  url
+                );
 
 
               alert(
@@ -351,13 +674,11 @@ async function fetchMedia(type) {
   try {
 
     /*
-     * IMPORTANT:
+     * FILTER ONLY.
      *
-     * We filter only.
-     *
-     * We DO NOT use orderBy()
-     * here because that can require
-     * a Firestore composite index.
+     * NO orderBy()
+     * so Firestore does not require
+     * another composite index.
      */
 
     const mediaQuery =
@@ -402,11 +723,10 @@ async function fetchMedia(type) {
       );
 
 
-    /*
-     * Sort locally.
-     *
-     * Latest uploads first.
-     */
+    // ====================================
+    // SORT LOCALLY
+    // LATEST UPLOAD FIRST
+    // ====================================
 
     items.sort(
       (a, b) => {
@@ -474,7 +794,9 @@ async function load(
 
 
   const rows =
-    await fetchMedia(type);
+    await fetchMedia(
+      type
+    );
 
 
   // ====================================
@@ -483,7 +805,6 @@ async function load(
 
   const draw =
     data => {
-
 
       if (!data.length) {
 
@@ -532,6 +853,29 @@ async function load(
       "input",
       event => {
 
+        // Stop any current audio
+        // before redrawing search results.
+
+        if (currentAudio) {
+
+          currentAudio.pause();
+
+          currentAudio.currentTime =
+            0;
+
+        }
+
+
+        currentAudio =
+          null;
+
+        currentButton =
+          null;
+
+        currentPlayerBox =
+          null;
+
+
         const search =
           event.target.value
             .toLowerCase()
@@ -570,6 +914,7 @@ async function load(
 // ======================================
 // START
 // ======================================
+
 
 // Home page songs
 load(
